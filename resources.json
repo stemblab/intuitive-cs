@@ -1,0 +1,10 @@
+[
+    "http://stemblab.github.io/complex-svd/main.coffee",
+    "http://stemblab.github.io/complex-pseudoinverse/main.coffee",
+    "http://stemblab.github.io/irls/irls.coffee",
+    "main.coffee",
+    "main.css",
+    "slides.css",
+    "slides.html",
+    "main.html"
+]

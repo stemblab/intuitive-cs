@@ -1,0 +1,46 @@
+.subslide {
+    margin-top: -5px;
+    font-size: 10pt;
+    color: gray;
+}
+
+.bib {
+    width: 600px;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto; 
+    text-align: left   
+}
+
+.bib p {
+    margin-left: 2em; 
+    text-indent: -2em;
+    font-size: 10pt;
+    line-height: normal;
+    margin-bottom: 10pt;
+}
+
+.bib ol {
+    margin-left: 0;
+    padding-left: 0;
+    counter-reset: item;
+}
+
+.bib ol>li {
+    margin-left: 2em; 
+    text-indent: -2em;
+    padding-left: 0; 
+    counter-increment: item; 
+    list-style: none inside;
+    font-size: 10pt;
+    line-height: normal;
+    margin-bottom: 10pt;
+}
+
+.bib ol>li:before {
+    content: "[" counter(item) "]";
+    margin-right: 0.5em;
+}
+
+/*!end*/ (276)
+

@@ -1,0 +1,114 @@
+.left_col {
+    float: left;
+    width: 450px;
+}
+
+.right_col {
+    float: right;
+    width: 450px;
+}
+
+.clear {
+    clear: both;
+}
+
+
+#text {
+    width: 960px;
+    margin: 0 auto;
+    margin-bottom: 0px;
+}
+
+
+.pz_note {
+    display: none;
+}
+
+.pz_text {
+    cursor: default;
+    border-bottom: 1px dotted;
+}
+
+.pz_section {
+    cursor: pointer;
+}
+
+.pz_slide_link {
+    cursor: pointer;
+    color: #0080FF;
+    border-bottom: 1px #0080FF dashed;
+}
+
+.pz_slide, .pz_slide_clone {
+    height: 500px;
+    text-align: center; 
+}
+
+.pz_slide_toc {
+    width: 300px;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto; 
+    text-align: left;
+    line-height: normal;
+}
+
+.pz_slide_heading {
+    padding-bottom: 20px;
+}
+
+.pz_slide_body {
+    width: 600px;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto; 
+    text-align: left   
+}
+
+.pz_slide_left_panel {
+    float: left;
+    width: 320px;
+    /*height: 430px;*/
+    text-align: left;
+    padding-left: 50px;
+    /*padding-top: 150px;*/
+}
+
+.pz_slide_right_panel {
+    float: right;
+    width: 360px;
+    height: 430px;
+    text-align: left;
+    padding-left: 0px;  
+}
+
+.pz_slide_left_panel_one_third {
+    float: left;
+    width: 230px;
+    text-align: left;
+    padding-left: 50px;
+}
+
+.pz_slide_right_panel_two_thirds {
+    float: right;
+    width: 450px;
+    height: 430px;
+    text-align: left;
+    /*padding-left: 0;*/ 
+}
+
+.pz_slide_tips {
+    width: 500px;
+    margin-top: 30px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-left: auto;
+    margin-right: auto; 
+    text-align: left;
+    background: #eee; color: #888;
+    font-size: 10pt;
+    line-height: 100%;
+}
+

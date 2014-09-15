@@ -1,0 +1,504 @@
+<div id="slides" style="display: none;">
+
+  <div class="pz_slide" id="slide_toc" section="introduction">
+
+    <h3>Compressive Sensing</h3>
+
+    <div class="pz_slide_toc">
+      Table of contents:
+      <ul>
+	<li> <a href="#introduction">Introduction</a> </li>
+	<li> <a href="#overview">Overview</a> </li>
+	<li> <a href="#solving">Solving the Riddle</a> </li>
+	<li> <a href="#significance">Significance of the Riddle</a> </li>
+	<li> <a href="#two_important_bases">Two Important Bases</a> </li>
+	<li> <a href="#sensing_coordinates">Sensing Coordinates</a> </li>
+	<li> <a href="#sparsity_basis">Sparsity Basis Projections</a> </li>
+	<li> <a href="#aliases">K-Sparse Aliases</a> </li>
+	<li> <a href="#key_equation">Key Equation</a> </li>
+	<li> <a href="#reconstruction">Practical Reconstruction</a> </li>
+	<li> <a href="#extensions">Summary and Extensions</a> </li>
+      </ul>
+      <span class="pz_text" ref="slide_tips">(Keyboard shortcuts and tips)</span>
+    </div>
+
+    <div class="pz_note" id="slide_tips">
+      <div style="font-size: 10pt;">
+	<ul>
+	  <li> *Esc*: Close/open slides window. </li>
+	  <li> *Left/right*: Navigate slides. </li>
+	  <li> *Up/down*: Scroll main page. </li>
+	  <li> *Return*: Go to corresponding section in main page. </li>
+	  <li> Links navigate between slides and main page. </li>
+	  <li> Drag window anywhere on page. </li>
+	</ul>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="pz_slide" id="slide_introduction" section="introduction">
+
+    <div class="pz_slide_heading">
+      <h3>Polynomial Riddle</h3>
+    </div>
+
+    <div class="pz_slide_body">
+      <img src="./python/riddle.svg"></img>
+      <ul>
+	<li> Three polynomial signals.  I pick one. </li>
+	<li> Which samples do you need to correctly determine the signal?</li>
+	<li> Just <span style="color: red;">red</span> and 
+	  <span style="color: blue;">blue</span> samples? All three samples?</li>
+      </ul>
+    </div>
+
+  </div>
+  
+  <div class="pz_slide" id="slide_overview" section="overview">
+    <div class="pz_slide_heading">
+      <h3>Overview</h3>
+    </div>
+
+    <style>.overview td {background:#ddd;}</style>
+    <div class="pz_slide_body">
+
+      <ul>
+	<li> Promise of CS: transmit or store signals using fewer bits. </li>
+	<li> Represent one signal according to two *bases*.
+	  <br><br>
+	  <table class="overview" width="400" cellpadding="4">
+	    <th>Basis<th>Coordinates
+	    <tr><td>1. Sparsity<td>At least one zero coefficient
+	    <tr><td>2. Sensing<td>At least one redundant coefficient
+	  </table>
+	  <br>
+	</li>
+	<li> Polynomial example, $f(t)=x_0+x_1 t+ x_2 t^2$:
+	  <table class="overview" width="480" cellpadding="4">
+	    <th>Representation<th>Basis<th>Coordinates
+	      <tr><td>1. Sparsity <td>$\{1,t,t^2\}$ <td>$[x_0~x_1~x_2]^T$ (one non-zero)
+		<tr><td>2. Sensing <td>Lagrange <td>Sample values
+	  </table>
+	</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="pz_slide" id="slide_solving" section="solving">
+    
+    <div class="pz_slide_heading">
+      <h3>Solving the Riddle</h3>
+    </div>
+
+    <div class="pz_slide_body" style="margin-top: -10px;">
+
+      <img src="./python/riddle.svg"></img>
+
+      <ul>
+	<li> 3 samples unambiguously distinguish __any__ quadratic polynomial.</li>
+	<li> 2 samples? </li>
+	<ul>
+	  <li> <span style="color: blue;">blue</span> and 
+	    <span style="color: green;">green</span>:
+	    line and parabola agree for $x_1=2x_2$.</li>
+	  <li> <span style="color: red;">red</span> and
+	    <span style="color: blue;">blue</span>:
+	    line and parabola agree for $x_1=-x_2$.</li>
+	  <li> <span style="color: red;">red</span> and 
+	    <span style="color: green;">green</span>: <b>no two signals ever agree</b>
+	    <br/>(for any $x_0$, $x_1$, $x_2$).</li>
+	</ul>
+	<li> *No 1-sparse aliases using the <span style="color: red;">red</span> and 
+	  <span style="color: green;">green</span> samples*. </li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="pz_slide" id="slide_significance" section="significance">
+
+    <div class="pz_slide_heading">
+      <h3>Significance of the Riddle</h3>
+    </div>
+
+    <div class="pz_slide_body">
+
+      <ul>
+
+	<li> Two samples is __compression__. 
+	  <ul>
+	    <li> Sparsity *enables* compression. </li>
+	    <li> Compression requires absence of K-Sparse aliases </li>
+	  </ul>
+	</li>
+
+	<li> Periodic functions are (trigonometric) polynomials.
+	  <ul>
+	    <li> Useful in applications. </li>
+	    <li> E.g., signals with sparse frequency spectrum. </li>
+	  </ul>
+	</li>
+
+	<li> Two samples is __sub-Nyquist__  
+	  <ul>
+	    <li> But, sparsity is *severe* constraint. </li>
+	    <li> The key is a *pair of bases*: sparse and compressible. </li>
+	  </ul>
+	</li>
+	
+      </ul>
+      
+    </div>
+
+  </div>
+
+  <div class="pz_slide" id="slide_twobases_1" section="two_important_bases">
+
+    <div class="pz_slide_heading">
+      <h3>Two Important Bases</h3>
+      <p class="subslide">(Slide 1 of 2)</p>
+    </div>
+
+    <div class="pz_slide_body">
+
+      <h4>Sparsity Basis</h4>
+
+      <ul>
+	<li> E.g., $\mathcal{B}_N=\{1,t,t^2\}$ </li>
+	<li> $K$-sparse signal has $K$ non-zero coefficients </li>
+	<li> E.g., 1-sparse $f(t)=x_0+x_1 t+x_2t^2$
+	  <ul>
+	    <li> One of $x_0$, $x_1$ or $x_2$ is non-zero </li>
+	    <li> I.e., constant, line or parabola </li>
+	  </ul>
+	</li>
+      </ul>
+
+    </div>
+    
+  </div>
+
+  <div class="pz_slide" id="slide_twobases_2" section="two_important_bases">
+
+    <div class="pz_slide_heading">
+      <h3>Two Important Bases</h3>
+      <p class="subslide">(Slide 2 of 2)</p>
+    </div>
+
+    <div class="pz_slide_body">
+
+      <h4>Sensing Basis</h4>
+
+      <ul>
+	<li> Coefficients (sensed) from measurements </li>
+	<li> Prototype: *Lagrange* basis </li>
+	<li> Coefficients are sample values.
+	  <ul>
+	    <li> Basis polynomials unity at one instant, zero at others.</li>
+	    <li> Plot is for sampling instants $\{-1,0,2\}$ </li>
+	  </ul>
+	</li>
+      </ul>
+
+      <img src="./python/lagrange_basis.svg"></img>
+    </div>
+
+  </div>
+
+  <div class="pz_slide" id="slide_sensing_coordinates_1" 
+       section="sensing_coordinates" codenodes="270,209,235">
+
+    <div class="pz_slide_heading">
+      <h3>Sensing Coordinates</h3>
+      <p class="subslide">(Slide 1 of 3)</p>
+    </div>
+
+    <div class="pz_slide_left_panel_one_third" style="padding-top: 0px">
+
+      <h4>Constant</h4>
+      <ul>
+	<li> Shown in black:
+	  <ul>
+	    <li>$f(t)=1$</li>
+	  </ul>
+	</li>
+	<li>Each sample value has an axis (see inset)</li>
+      </ul>
+
+    </div>
+
+    <div class="pz_slide_right_panel_two_thirds" 
+	 style="padding-top: 0px;">
+      <div style="margin-left: -100px;">
+	<img src="./python/geom_1.svg" height="420px"></img>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="pz_slide" id="slide_sensing_coordinates_2"
+       section="sensing_coordinates" codenodes="270,209,210,241">
+    <div class="pz_slide_heading">
+      <h4>Sensing Coordinates</h4>
+      <p class="subslide">(Slide 2 of 3)</p>
+    </div>
+
+    <div class="pz_slide_left_panel_one_third" style="padding-top: 0px">
+
+      <h4>Constant & Line<h4>
+
+	<ul>
+	  <li>Shown in black:
+	    <ul>
+	      <li>$f(t)=1$</li> 
+	      <li>$f(t)=t$</li>
+	    </ul>
+	  </li>
+	</ul>
+
+    </div>
+
+    <div class="pz_slide_right_panel_two_thirds" style="padding-top: 0px;">
+      <div style="margin-left: -143px;">
+	<img src="./python/geom_2.svg" height="420px"></img>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="pz_slide" id="slide_sensing_coordinates_3" 
+       section="sensing_coordinates" codenodes="270,209,210,211,242">
+
+    <div class="pz_slide_heading">
+      <h4>Sensing Coordinates</h4>
+      <p class="subslide">(Slide 3 of 3)</p>
+    </div>
+
+    <div class="pz_slide_left_panel_one_third" style="padding-top: 0px">
+      
+      <h4>Constant & Line & Parabola<h4>
+
+	<ul>
+	  <li>Shown in black:
+	    <ul>
+	      <li>$f(t)=1$</li>
+	      <li>$f(t)=t$</li> 
+	      <li>$f(t)=t^2$</li>
+	    </ul>
+	  </li>
+	</ul>
+
+    </div>
+
+    <div class="pz_slide_right_panel_two_thirds" style="padding-top: 0px;">
+
+      <div style="margin-top: -9px; margin-left: -143px;">
+	<img src="./python/geom_3.svg" height="429px"></img>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="pz_slide" id="slide_sparsity_basis" 
+       section="sparsity_basis" codenodes="212,243">
+
+    <div class="pz_slide_heading">
+      <h3>Sparsity Basis Projections</h3>
+    </div>
+
+    <div class="pz_slide_left_panel_one_third" style="padding-top: 0px">
+      <ul>
+	<li> Project sparsity basis elements onto $b_0$,$b_2$ plane. </li>
+	<li> Each projection has only two coordinates.</li>
+      </ul>
+    </div>
+
+    <div class="pz_slide_right_panel_two_thirds" style="padding-top: 28px;">
+      <div style="margin-left: -100px;">
+	<img src="./python/geom_4.svg" height="420px"></img>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="pz_slide" id="slide_aliases_1" 
+       section="aliases" codenodes="215,236">
+
+    <div class="pz_slide_heading">
+      <h3>Aliases</h3>
+    </div>
+
+    <div class="pz_slide_left_panel_one_third" style="padding-top: 60px">
+
+      <ul>
+	<li> Project sparsity basis onto
+	  $\color{red}{b_0}$,$\color{green}{b_2}$ plane. </li>
+	<li> $\begin{bmatrix}1\\1\end{bmatrix}$, $\begin{bmatrix}-1\\2\end{bmatrix}$, 
+	  $\begin{bmatrix}1\\4\end{bmatrix}$ </li>
+	<li> Each <font color="#C0C000">projection</font> is distinct. </li>
+	<li> Need *two* projections to alias another. </li>
+	<li> Impossible since *1-sparse*. </li>
+      </ul>    
+
+    </div>
+
+    <div class="pz_slide_right_panel_two_thirds" style="padding-top: 40px;">
+      <div style="margin-left: -25px;">
+	<img src="./python/spark_1.svg" height="350px"></img>
+      </div>
+    </div>    
+
+  </div>
+
+  <div class="pz_slide" id="slide_key_equation" section="key_equation">
+
+    <div class="pz_slide_heading">
+      <h3>Key equation: $Ax=b$</h3>
+    </div>
+
+    <div class="pz_slide_body">
+
+      <ul>
+	<li>Columns of $A$ are *sparsity basis projections* 
+	  ($\mathcal{SB}$-projections)
+	  <ul>
+	    <li> E.g., $A=\begin{bmatrix}1&-1&1\\1&2&4\end{bmatrix}$ from last  slide. </li>
+	  </ul>
+	</li>
+	<li> $x$ = *sparsity coordinates*, $[x_0,...,x_N]^T$ (only $K$ non-zero) </li>
+	<li> $Ax$ = combination of $\mathcal{SB}$-projections = *signal's projection* = $b$ </li>
+	<li> $b$ = *compressed sampling coordinates* ($b=[b_0,...,b_M]^T$) </li>
+	<li> $Ax=b$ *under determined* (fewer rows than columns).
+	  <ul>
+	    <li> Unique solution if no fewer than $2K+1$ columns of $A$ combine to zero
+	      ($2K+1=3$ above)</li>
+	    <li> i.e., $\mathrm{spark}(A) \geq 2K+1$ </li>
+	  </ul>
+	</li>
+	<ul>
+
+    </div>
+    
+  </div>
+
+  <div class="pz_slide" id="slide_reconstruction_1" 
+       section="reconstruction" codenodes="196,207,238">
+
+    <div class="pz_slide_heading">
+      <h3>Reconstruction</h3>
+      <p class="subslide">(Slide 1 of 4)</p>
+    </div>
+
+    <div class="pz_slide_body" style="margin-top: -30px;">
+      <img src="./python/recon1_1.svg" height="460px"></img>
+    </div>
+
+  </div>
+  
+  <div class="pz_slide" id="slide_reconstruction_2"
+       section="reconstruction" codenodes="196,207,203,250">
+
+    <div class="pz_slide_heading">
+      <h3>Reconstruction</h3>
+      <p class="subslide">(Slide 2 of 4)</p>
+    </div>
+
+    <div class="pz_slide_body" style="margin-top: -30px;">
+      <img src="./python/recon1_2.svg" height="460px"></img>
+    </div>
+    
+  </div>
+
+  <div class="pz_slide" id="slide_reconstruction_3"
+    section="reconstruction" codenodes="196,207,203,204,249">
+
+    <div class="pz_slide_heading">
+      <h3>Reconstruction</h3>
+      <p class="subslide">(Slide 3 of 4)</p>
+    </div>
+
+    <div class="pz_slide_body" style="margin-top: -32px;">
+      <img src="./python/recon1_3.svg" height="460px"></img>
+    </div>
+
+  </div>
+  
+  <div class="pz_slide" id="slide_reconstruction_4" 
+       section="reconstruction" codenodes="197,208,254">
+
+    <div class="pz_slide_heading">
+      <h3>Reconstruction</h3>
+      <p class="subslide">(Slide 4 of 4)</p>
+    </div>
+
+    <div class="pz_slide_left_panel_one_third" style="padding-top: 40px">
+      <ul>
+	<li>Traverse solutions of $Ax=b$</li>
+	<li>$\color{blue}{\ell_0}$-norm difficult</li>
+	<li>$\color{red}{\ell_2}$-norm inaccurate</li>
+	<li>$\color{green}{\ell_1}$-norm just right</li>    
+      </ul>
+    </div>
+
+    <div class="pz_slide_right_panel_two_thirds" style="padding-top: 10px;">
+      <div style="margin-left: -50px;">
+	<img src="./python/norms.svg" height="350px"></img>
+      </div>
+    </div>    
+
+  </div>
+
+  <div class="pz_slide" id="slide_extensions" section="extensions">
+
+    <div class="pz_slide_heading">
+      <h3>Extensions</h3>
+    </div>
+
+    <div class="pz_slide_body">
+
+      Bridging the gap between intuition and applications:
+
+      <ul>
+	<li> the relationship between bases </li>
+	<li> uniform sampling (i.e., if you can't choose sampling instants) <li>
+	  <li> the signal class (e.g., periodic signals) </li>
+	  <li> the effect of noise </li>
+	  <li> choosing bases for large-scale applications </li>
+	  <li> computational tools </li>
+      </ul>
+
+      Companion module <a href="/?id=b0080" target="_blank">Compressive 
+	Sensing Primer</a> addresses these areas.
+      
+    </div>
+
+  </div>
+
+
+  <div class="pz_slide" id="slide_references">
+
+    <div class="pz_slide_heading">
+      <h3>References</h3>
+    </div>
+
+    <ol class="bib">
+
+      1. Bruckstein, A.M.; Donoho, D.L.; Elad, M.,
+      "[http://citeseer.ist.psu.edu/viewdoc/summary?doi=10.1.1.102.4697,
+      From Sparse Solutions of Systems of Equations to Sparse
+      Modelling of Signals and Images]," SIAM Review, Vol.51, No.1,
+      pp.34,81.
+
+      1. Engelberg, S.,
+      "[http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=6145261&isnumber=6145243,
+      "Compressive sensing (Instrumentation Notes)]," Instrumentation
+      & Measurement Magazine, IEEE , vol.15, no.1, pp.42,46, February
+      2012.
+
+    </ol>
+
+  </div>
+
+</div>
