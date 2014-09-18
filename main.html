@@ -27,7 +27,7 @@
 
   <div class="pz_slide_link" ref="slide_introduction" 
        style="text-align: center;">
-    <img src="./python/riddle.svg" title="Polynomial riddle."></img>
+    <img src="./py/riddle.svg" title="Polynomial riddle."></img>
   </div>
 
   This introduction to CS is mainly intuitive.  If your background is
@@ -348,7 +348,7 @@
   <h2 class="pz_section" id="sensing_coordinates"
       ref="slide_sensing_coordinates_1">Sensing Coordinates</h2>
 
-  <pzthumb src="./python/geom_3.svg" ref="slide_sensing_coordinates_3"/>
+  <pzthumb src="./py/geom_3.svg" ref="slide_sensing_coordinates_3"/>
 
   It is helpful to visualize our signals in a three dimensional space
   (i.e., the ubiquitous <span class="pz_text" ref="sig_space_note">
@@ -400,7 +400,7 @@ and entirely this idea (this is the heart of CS).
     </center>
     <div class="pz_slide_link" ref="slide_sensing_coordinates_3"
 	 style="text-align: center;">
-      <img src="./python/geom_3.svg"></img>
+      <img src="./py/geom_3.svg"></img>
     </div>
   </figure>
 
@@ -418,7 +418,7 @@ and entirely this idea (this is the heart of CS).
   (and obviously fewer coefficients).  Then, use the signal's known
   sparsity to reconstruct the signal from its projection.
 
-  <pzthumb src="./python/geom_4.svg" ref="slide_sparsity_basis"/>
+  <pzthumb src="./py/geom_4.svg" ref="slide_sparsity_basis"/>
 
   <div class="pz_note" id="projection_note">
     Projecting onto a plane amounts to finding the closest vector in
@@ -484,14 +484,14 @@ and entirely this idea (this is the heart of CS).
     </center>
     <div class="pz_slide_link" ref="slide_sparsity_basis"
 	 style="text-align: center;">
-      <img src="./python/geom_4.svg"></img>
+      <img src="./py/geom_4.svg"></img>
     </div>
   </figure>
 
   <h2 class="pz_section" id="aliases" 
       ref="slide_aliases_1">K-Sparse Aliases</h2>
 
-  <pzthumb src="./python/spark_1.svg" ref="slide_aliases_1"/>
+  <pzthumb src="./py/spark_1.svg" ref="slide_aliases_1"/>
 
   In the context of CS, the sparsity of an alias is important. In a
   1-sparse problem (such as the polynomial riddle) 1-sparse aliases
@@ -572,7 +572,7 @@ and entirely this idea (this is the heart of CS).
     </center>
     <div class="pz_slide_link" ref="slide_aliases_1"
 	 style="text-align: center;">
-      <img src="./python/spark_1.svg"></img>
+      <img src="./py/spark_1.svg"></img>
     </div>
   </figure>
 
@@ -660,7 +660,7 @@ and entirely this idea (this is the heart of CS).
   helpful because a 1-sparse signal is any point on one of the
   axes---and nowhere else.
 
-  <pzthumb src="./python/recon1_3.svg" ref="slide_reconstruction_3"/>
+  <pzthumb src="./py/recon1_3.svg" ref="slide_reconstruction_3"/>
 
   The sparse solution is thus where the line (the 
   <span class="pz_slide_link"
@@ -692,7 +692,7 @@ and entirely this idea (this is the heart of CS).
   distance along the line from the optimum 1-sparse solution.  Thus,
   as a reference, the $\ell_0$ norm dips to indicate the optimum point
   at $d=0$ (where $x$ is 1-sparse, and so $||x||_0=1$).
-  <pzthumb src="./python/norms.svg" ref="slide_reconstruction_4"/> The
+  <pzthumb src="./py/norms.svg" ref="slide_reconstruction_4"/> The
   $\ell_2$ norm is the best behaved---a smooth parabola that we could
   easily optimize computationally---but *its minimum does not
   correspond to the sparse solution.* The $\ell_1$ norm is something
@@ -714,7 +714,7 @@ and entirely this idea (this is the heart of CS).
   <figure>
     <div class="pz_slide_link" ref="slide_reconstruction_4"
 	 style="text-align: center;">
-      <img src="./python/norms.svg"></img>
+      <img src="./py/norms.svg"></img>
     </div>
     <center>
       <figcaption>Figure 6. 
