@@ -3462,7 +3462,7 @@
 
   })();
 
-  Ace.path = "http://ajaxorg.github.io/ace-builds/src-min";
+  Ace.path = "https://ajaxorg.github.io/ace-builds/src-min";
 
   Ace.Resources = (function() {
 
@@ -4222,7 +4222,7 @@
         }
       });
       this.img = $("<img>", {
-        src: "http://puzlet.org/puzlet/images/UI_302.png",
+        src: "https://puzlet.org/puzlet/images/UI_302.png",
         height: 25,
         css: {
           cursor: "pointer"
@@ -4552,12 +4552,12 @@
 
     Loader.prototype.coreResources = [
       {
-        url: "http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js",
+        url: "https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js",
         "var": "jQuery"
       }, {
         url: "/puzlet/js/google_analytics.js"
       }, {
-        url: "http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/themes/smoothness/jquery-ui.css",
+        url: "https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/themes/smoothness/jquery-ui.css",
         "var": "jQuery"
       }, {
         url: "/puzlet/js/wiky.js",
@@ -4593,7 +4593,7 @@
       }, {
         url: "/puzlet/js/jquery.cookie.js"
       }, {
-        url: "http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js",
+        url: "https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js",
         "var": "jQuery.ui"
       }
     ];
@@ -4892,7 +4892,7 @@
       icon = $("<link>", {
         rel: "icon",
         type: "image/png",
-        href: "http://puzlet.org/puzlet/images/favicon.ico"
+        href: "https://puzlet.org/puzlet/images/favicon.ico"
       });
       $(document.head).append(icon);
     }
@@ -4929,10 +4929,10 @@
       }
       if (this.location.host === "localhost") {
         s = this.location.path.split("/");
-        this.link = "http://github.com/" + s[1].split(".")[0] + "/" + s[2];
+        this.link = "https://github.com/" + s[1].split(".")[0] + "/" + s[2];
       } else {
         s = this.location.url.split("/");
-        this.link = "http://github.com/" + s[2].split(".")[0] + "/" + s[3];
+        this.link = "https://github.com/" + s[2].split(".")[0] + "/" + s[3];
       }
       src = "https://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67";
       html = "<a href=\"" + this.link + "\" id=\"ribbon\" style=\"opacity:0.2\">\n<img style=\"position: absolute; top: 0; right: 0; border: 0;\" src=\"" + src + "\" alt=\"Fork me on GitHub\" data-canonical-src=\"https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png\"></a>";
@@ -4955,7 +4955,7 @@
 
   MathJaxProcessor = (function() {
 
-    MathJaxProcessor.prototype.source = "http://cdn.mathjax.org/mathjax/2.4-latest/MathJax.js?config=default";
+    MathJaxProcessor.prototype.source = "https://cdn.mathjax.org/mathjax/2.4-latest/MathJax.js?config=default";
 
     MathJaxProcessor.prototype.mode = "HTML-CSS";
 
@@ -5250,7 +5250,7 @@
       i.css({
         float: "right",
         cursor: "pointer",
-        backgroundImage: "url('http://puzlet.org/puzlet/images/UI_171.png')",
+        backgroundImage: "url('https://puzlet.org/puzlet/images/UI_171.png')",
         backgroundRepeat: "no-repeat",
         backgroundPosition: "right top",
         backgroundSize: "20px 20px"
